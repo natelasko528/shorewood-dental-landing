@@ -1,3 +1,4 @@
+/// <reference path="../types/custom-elements.d.ts" />
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -99,40 +100,29 @@ function Hero() {
 
         {/* Subheadline */}
         <p className="text-lg md:text-xl text-text-secondary max-w-4xl mx-auto mb-10 leading-relaxed">
-          Shorewood Dental misses an estimated 88 calls per month. At $950 average patient lifetime value,
-          <span className="text-gold font-semibold"> you&apos;re bleeding $83,600/month in lost revenue.</span>
+          Shorewood Dental misses an estimated 88 calls/month costing you{' '}
+          <strong className="text-gold">$83,600/year</strong> in lost revenue.
+          <br />
+          Our AI Voice Agent answers every call, books appointments, and never takes a day off.
         </p>
 
-        {/* Live counter */}
-        <div className="inline-flex items-center gap-2 mb-10 px-6 py-3 bg-red-500/10 border border-red-500/30 rounded-full">
-          <div className="pulse-red w-3 h-3 bg-red-500 rounded-full"></div>
-          <span className="text-red-400 font-mono text-sm">
-            Calls missed this month: <span className="font-bold">{counts.calls}</span> • Lost revenue: ${counts.revenue.toLocaleString()}
-          </span>
-        </div>
-
-        {/* CTA */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="#demo" className="btn-gold text-lg px-8 py-4">
-            Talk to Aria (Our AI) Live
-          </a>
-          <a href="#roi" className="btn-outline text-lg px-8 py-4">
-            Calculate Your Losses
-          </a>
-        </div>
-
-        {/* Social proof */}
-        <div className="mt-16 flex flex-col items-center">
-          <div className="flex -space-x-2 mb-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-gold/50 border-2 border-navy"></div>
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-gold/50 border-2 border-navy"></div>
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-gold/50 border-2 border-navy"></div>
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-gold/50 border-2 border-navy"></div>
+        {/* Animated Stats */}
+        <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-10">
+          <div className="stat-card">
+            <div className="stat-value">{counts.calls}</div>
+            <div className="stat-label">Missed Calls/Month</div>
           </div>
-          <p className="text-text-secondary text-sm">
-            <span className="text-gold font-bold">47 dental practices</span> already trust RevolutionAI to never miss a call
-          </p>
+          <div className="text-3xl text-gold hidden md:block">×</div>
+          <div className="stat-card">
+            <div className="stat-value">${counts.revenue.toLocaleString()}</div>
+            <div className="stat-label">Annual Revenue Loss</div>
+          </div>
         </div>
+
+        {/* CTA Button */}
+        <a href="tel:4144444444" className="btn-gold text-lg">
+          <span className="relative z-10">Get Your Free Demo</span>
+        </a>
       </div>
     </section>
   )
@@ -141,81 +131,44 @@ function Hero() {
 // SECTION 3: Problem
 function Problem() {
   return (
-    <section className="section-padding bg-card">
+    <section className="py-20 bg-surface">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <span className="text-gold text-sm font-bold tracking-widest uppercase mb-4 block">
-            THE HIDDEN CRISIS
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Your Front Desk Is Costing You Patients
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            The Hidden Cost of <span className="text-gold">Human Receptionists</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-3xl mx-auto">
-            Even the best receptionists can&apos;t be everywhere at once. Here&apos;s what happens when calls go unanswered.
+            Based on your practice's call volume and average patient value, here's what you're losing:
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {/* Problem 1 */}
+          {/* Card 1 */}
           <div className="problem-card">
-            <div className="w-16 h-16 rounded-2xl bg-red-500/10 flex items-center justify-center mb-6">
-              <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold mb-4">Peak-Hour Chaos</h3>
-            <p className="text-text-secondary leading-relaxed">
-              Lunch breaks, staff meetings, or patient rushes mean calls go to voicemail. 73% of patients won&apos;t leave a message—they call your competitor instead.
+            <div className="problem-icon">📞</div>
+            <h3 className="text-2xl font-bold mb-3">88 Missed Calls</h3>
+            <p className="text-text-secondary">
+              Every month, 88 potential patients go unanswered during lunch, after hours, or when staff is busy.
             </p>
-            <div className="mt-6 p-4 bg-navy rounded-xl border border-red-500/20">
-              <div className="text-red-400 text-sm font-mono">Lost this month: ~$28,000</div>
-            </div>
           </div>
 
-          {/* Problem 2 */}
+          {/* Card 2 */}
           <div className="problem-card">
-            <div className="w-16 h-16 rounded-2xl bg-red-500/10 flex items-center justify-center mb-6">
-              <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold mb-4">After-Hours Blackout</h3>
-            <p className="text-text-secondary leading-relaxed">
-              58% of patient calls happen outside business hours. Every evening/weekend call is a patient booking with a practice that IS available.
+            <div className="problem-icon">💰</div>
+            <h3 className="text-2xl font-bold mb-3">$950 Per Patient</h3>
+            <p className="text-text-secondary">
+              Your average patient lifetime value. Each missed call is a potential long-term relationship lost.
             </p>
-            <div className="mt-6 p-4 bg-navy rounded-xl border border-red-500/20">
-              <div className="text-red-400 text-sm font-mono">Lost this month: ~$35,000</div>
-            </div>
           </div>
 
-          {/* Problem 3 */}
+          {/* Card 3 */}
           <div className="problem-card">
-            <div className="w-16 h-16 rounded-2xl bg-red-500/10 flex items-center justify-center mb-6">
-              <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold mb-4">Hiring & Turnover Trap</h3>
-            <p className="text-text-secondary leading-relaxed">
-              Average dental receptionist salary: $42,000/year + benefits. Turnover costs another $15,000 to recruit and train. That&apos;s $60K+ annually per seat.
+            <div className="problem-icon">📉</div>
+            <h3 className="text-3xl font-bold mb-3">$83,600/Year</h3>
+            <p className="text-text-secondary">
+              That's the revenue walking out the door because a human can't answer every call.
             </p>
-            <div className="mt-6 p-4 bg-navy rounded-xl border border-red-500/20">
-              <div className="text-red-400 text-sm font-mono">Annual cost: $60,000+</div>
-            </div>
           </div>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-16 text-center p-8 bg-red-500/5 border border-red-500/20 rounded-2xl">
-          <h3 className="text-2xl font-bold mb-4">
-            The Math Is Brutal: <span className="text-red-400">$83,600/month</span> in missed opportunities
-          </h3>
-          <p className="text-text-secondary mb-6">
-            That&apos;s over <span className="text-gold font-bold">$1 million per year</span> walking out the door.
-          </p>
-          <a href="#roi" className="btn-gold inline-block">
-            See Your Custom Loss Report
-          </a>
         </div>
       </div>
     </section>
@@ -225,112 +178,87 @@ function Problem() {
 // SECTION 4: ROI Calculator
 function ROICalculator() {
   const [missedCalls, setMissedCalls] = useState(88)
-  const [avgValue, setAvgValue] = useState(950)
-  
-  const monthlyLoss = missedCalls * avgValue
+  const [patientValue, setPatientValue] = useState(950)
+
+  const monthlyLoss = missedCalls * patientValue
   const annualLoss = monthlyLoss * 12
-  const ariaCost = 497
-  const monthlySavings = monthlyLoss - ariaCost
-  const annualSavings = monthlySavings * 12
-  const roi = ((monthlySavings / ariaCost) * 100).toFixed(0)
+  const aiCost = 497 * 12 // $497/month for AI
+  const netGain = annualLoss - aiCost
 
   return (
-    <section id="roi" className="section-padding bg-navy">
+    <section className="py-20">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <span className="text-gold text-sm font-bold tracking-widest uppercase mb-4 block">
-            ROI CALCULATOR
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Calculate Your Practice&apos;s Real Cost
-          </h2>
-          <p className="text-text-secondary text-lg max-w-3xl mx-auto">
-            Industry data shows dental practices miss 15-20% of incoming calls. Let&apos;s see what that means for your bottom line.
-          </p>
-        </div>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              Calculate <span className="text-gold">Your ROI</span>
+            </h2>
+            <p className="text-text-secondary text-lg">
+              Adjust the sliders to match your practice's numbers
+            </p>
+          </div>
 
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-          {/* Left: Inputs */}
-          <div className="space-y-8">
-            <div>
-              <label className="block text-sm font-bold mb-3 text-gold">
-                Missed Calls Per Month
+          <div className="bg-surface p-8 rounded-2xl border border-gold/10 shadow-lg">
+            {/* Slider 1: Missed Calls */}
+            <div className="mb-8">
+              <label className="block text-lg font-semibold mb-3">
+                Estimated Missed Calls per Month: <span className="text-gold">{missedCalls}</span>
               </label>
               <input
                 type="range"
-                min="20"
+                min="10"
                 max="200"
                 value={missedCalls}
                 onChange={(e) => setMissedCalls(Number(e.target.value))}
-                className="slider w-full"
+                className="slider"
               />
-              <div className="text-right mt-2 text-2xl font-bold text-gold">{missedCalls} calls</div>
-              <p className="text-text-secondary text-sm mt-2">
-                Based on call volume, staff availability, and hours. Average dental practice: 88/month.
-              </p>
             </div>
 
-            <div>
-              <label className="block text-sm font-bold mb-3 text-gold">
-                Average Patient Lifetime Value
+            {/* Slider 2: Patient Value */}
+            <div className="mb-10">
+              <label className="block text-lg font-semibold mb-3">
+                Average Patient Lifetime Value: <span className="text-gold">${patientValue}</span>
               </label>
               <input
                 type="range"
-                min="500"
-                max="3000"
+                min="200"
+                max="2000"
                 step="50"
-                value={avgValue}
-                onChange={(e) => setAvgValue(Number(e.target.value))}
-                className="slider w-full"
+                value={patientValue}
+                onChange={(e) => setPatientValue(Number(e.target.value))}
+                className="slider"
               />
-              <div className="text-right mt-2 text-2xl font-bold text-gold">${avgValue.toLocaleString()}</div>
-              <p className="text-text-secondary text-sm mt-2">
-                Includes initial visit + cleanings + procedures over patient lifespan. Conservative estimate: $950.
-              </p>
+            </div>
+
+            {/* Results */}
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="text-center p-6 bg-background rounded-xl">
+                <div className="text-3xl font-bold text-red-500 mb-2">
+                  -${monthlyLoss.toLocaleString()}
+                </div>
+                <div className="text-sm text-text-secondary">Monthly Loss</div>
+              </div>
+              <div className="text-center p-6 bg-background rounded-xl">
+                <div className="text-3xl font-bold text-red-500 mb-2">
+                  -${annualLoss.toLocaleString()}
+                </div>
+                <div className="text-sm text-text-secondary">Annual Loss</div>
+              </div>
+              <div className="text-center p-6 bg-background rounded-xl border-2 border-gold">
+                <div className="text-3xl font-bold text-gold mb-2">
+                  +${netGain.toLocaleString()}
+                </div>
+                <div className="text-sm text-text-secondary">Net Gain with AI</div>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center">
+              <a href="tel:4144444444" className="btn-gold text-lg">
+                Start Saving Today
+              </a>
             </div>
           </div>
-
-          {/* Right: Results */}
-          <div className="space-y-6">
-            <div className="p-6 bg-card rounded-2xl border border-red-500/20">
-              <div className="text-text-secondary text-sm mb-2">Monthly Revenue Loss</div>
-              <div className="text-4xl font-bold text-red-400">
-                ${monthlyLoss.toLocaleString()}
-              </div>
-            </div>
-
-            <div className="p-6 bg-card rounded-2xl border border-red-500/20">
-              <div className="text-text-secondary text-sm mb-2">Annual Revenue Loss</div>
-              <div className="text-4xl font-bold text-red-400">
-                ${annualLoss.toLocaleString()}
-              </div>
-            </div>
-
-            <div className="h-px bg-gold/20"></div>
-
-            <div className="p-6 bg-gold/10 rounded-2xl border border-gold/30">
-              <div className="text-text-secondary text-sm mb-2">With Aria (Monthly Savings)</div>
-              <div className="text-4xl font-bold text-gold">
-                ${monthlySavings.toLocaleString()}
-              </div>
-              <div className="mt-4 text-sm text-text-secondary">
-                Aria costs just $497/month. That&apos;s a <span className="text-gold font-bold">{roi}% ROI</span>.
-              </div>
-            </div>
-
-            <div className="p-6 bg-gold/10 rounded-2xl border border-gold/30">
-              <div className="text-text-secondary text-sm mb-2">Annual Savings</div>
-              <div className="text-4xl font-bold text-gold">
-                ${annualSavings.toLocaleString()}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-12 text-center">
-          <a href="#demo" className="btn-gold text-lg px-8 py-4">
-            Try Aria Live Now
-          </a>
         </div>
       </div>
     </section>
@@ -340,125 +268,82 @@ function ROICalculator() {
 // SECTION 5: How It Works
 function HowItWorks() {
   return (
-    <section className="section-padding bg-card">
+    <section className="py-20 bg-surface">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <span className="text-gold text-sm font-bold tracking-widest uppercase mb-4 block">
-            THE SOLUTION
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Meet Aria: Your 24/7 AI Receptionist
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            How It <span className="text-gold">Works</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-3xl mx-auto">
-            Aria answers every call, books appointments, and sends reminders—instantly, accurately, and around the clock.
+            Our AI Voice Agent integrates seamlessly with your existing systems
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Step 1 */}
-          <div className="feature-card">
-            <div className="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center mb-6">
-              <span className="text-3xl font-bold text-gold">1</span>
-            </div>
-            <h3 className="text-xl font-bold mb-4">Answers Every Call</h3>
-            <p className="text-text-secondary leading-relaxed mb-4">
-              Aria picks up in under 2 seconds, 24/7/365. No hold times, no voicemail, no missed opportunities.
-            </p>
-            <ul className="space-y-2 text-sm text-text-secondary">
-              <li className="flex items-start gap-2">
-                <svg className="w-5 h-5 text-gold mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>Instant pickup (avg. 1.8s)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-5 h-5 text-gold mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>After-hours coverage included</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-5 h-5 text-gold mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>Handles unlimited concurrent calls</span>
-              </li>
-            </ul>
-          </div>
+        <div className="max-w-5xl mx-auto">
+          <div className="relative">
+            {/* Vertical line connecting steps */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gold/20 hidden md:block" />
 
-          {/* Step 2 */}
-          <div className="feature-card">
-            <div className="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center mb-6">
-              <span className="text-3xl font-bold text-gold">2</span>
+            {/* Step 1 */}
+            <div className="relative flex flex-col md:flex-row items-center mb-16">
+              <div className="flex-1 md:text-right md:pr-12 mb-6 md:mb-0">
+                <div className="step-number md:float-right md:ml-8">1</div>
+                <h3 className="text-2xl font-bold mb-3">Patient Calls</h3>
+                <p className="text-text-secondary">
+                  When a patient calls, our AI answers instantly—24/7, no hold times, no missed opportunities.
+                </p>
+              </div>
+              <div className="w-16 h-16 rounded-full bg-gold flex items-center justify-center text-2xl z-10 shadow-glow">
+                📞
+              </div>
+              <div className="flex-1 md:pl-12" />
             </div>
-            <h3 className="text-xl font-bold mb-4">Books Appointments</h3>
-            <p className="text-text-secondary leading-relaxed mb-4">
-              Aria integrates with your practice management software. She checks availability, books slots, and confirms appointments in real-time.
-            </p>
-            <ul className="space-y-2 text-sm text-text-secondary">
-              <li className="flex items-start gap-2">
-                <svg className="w-5 h-5 text-gold mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>Syncs with Dentrix, Eaglesoft, etc.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-5 h-5 text-gold mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>Handles reschedules & cancellations</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-5 h-5 text-gold mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>Sends instant SMS confirmations</span>
-              </li>
-            </ul>
-          </div>
 
-          {/* Step 3 */}
-          <div className="feature-card">
-            <div className="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center mb-6">
-              <span className="text-3xl font-bold text-gold">3</span>
+            {/* Step 2 */}
+            <div className="relative flex flex-col md:flex-row items-center mb-16">
+              <div className="flex-1 md:pr-12" />
+              <div className="w-16 h-16 rounded-full bg-gold flex items-center justify-center text-2xl z-10 shadow-glow">
+                🤖
+              </div>
+              <div className="flex-1 md:pl-12 mb-6 md:mb-0">
+                <div className="step-number md:float-left md:mr-8">2</div>
+                <h3 className="text-2xl font-bold mb-3">AI Understands Intent</h3>
+                <p className="text-text-secondary">
+                  Natural language processing determines if they want to book, reschedule, or ask questions.
+                </p>
+              </div>
             </div>
-            <h3 className="text-xl font-bold mb-4">Reduces No-Shows</h3>
-            <p className="text-text-secondary leading-relaxed mb-4">
-              Aria sends automated reminders 48 hours, 24 hours, and 2 hours before appointments. No-shows drop by an average of 62%.
-            </p>
-            <ul className="space-y-2 text-sm text-text-secondary">
-              <li className="flex items-start gap-2">
-                <svg className="w-5 h-5 text-gold mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>Automated SMS/email reminders</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-5 h-5 text-gold mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>One-click reschedule links</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-5 h-5 text-gold mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>Fills cancellations from waitlist</span>
-              </li>
-            </ul>
-          </div>
-        </div>
 
-        <div className="mt-16 p-8 bg-gold/5 border border-gold/20 rounded-2xl text-center">
-          <h3 className="text-2xl font-bold mb-4">
-            The Result: <span className="text-gold">Zero Missed Calls, Maximum Revenue</span>
-          </h3>
-          <p className="text-text-secondary mb-6 max-w-2xl mx-auto">
-            Aria captures every opportunity your practice would&apos;ve lost. No more voicemails, no more "we&apos;ll call you back," no more patients going elsewhere.
-          </p>
-          <a href="#demo" className="btn-gold inline-block">
-            Experience Aria Live
-          </a>
+            {/* Step 3 */}
+            <div className="relative flex flex-col md:flex-row items-center mb-16">
+              <div className="flex-1 md:text-right md:pr-12 mb-6 md:mb-0">
+                <div className="step-number md:float-right md:ml-8">3</div>
+                <h3 className="text-2xl font-bold mb-3">Books Appointment</h3>
+                <p className="text-text-secondary">
+                  Syncs with Dentrix in real-time, confirms availability, and books the patient instantly.
+                </p>
+              </div>
+              <div className="w-16 h-16 rounded-full bg-gold flex items-center justify-center text-2xl z-10 shadow-glow">
+                📅
+              </div>
+              <div className="flex-1 md:pl-12" />
+            </div>
+
+            {/* Step 4 */}
+            <div className="relative flex flex-col md:flex-row items-center">
+              <div className="flex-1 md:pr-12" />
+              <div className="w-16 h-16 rounded-full bg-gold flex items-center justify-center text-2xl z-10 shadow-glow">
+                ✅
+              </div>
+              <div className="flex-1 md:pl-12">
+                <div className="step-number md:float-left md:mr-8">4</div>
+                <h3 className="text-2xl font-bold mb-3">Confirmation Sent</h3>
+                <p className="text-text-secondary">
+                  Automated SMS/email confirmation sent to patient and logged in your system.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -467,34 +352,76 @@ function HowItWorks() {
 
 // SECTION 6: Live Demo
 function LiveDemo() {
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://widgets.leadconnectorhq.com/loader.js'
+    script.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js')
+    script.async = true
+    document.body.appendChild(script)
+  }, [])
+
   return (
-    <section id="demo" className="section-padding bg-navy">
+    <section className="py-20">
       <div className="container-custom">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <h2 className="text-3xl md:text-5xl font-bold text-center">
-            Talk to Aria Right Now
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            Try It <span className="text-gold">Yourself</span>
           </h2>
-          <span className="pulse-gold inline-block px-3 py-1 bg-gold text-navy text-xs font-bold rounded-full">
-            LIVE
-          </span>
-        </div>
-        <p className="text-text-secondary text-center mb-12 text-lg max-w-3xl mx-auto">
-          This is the actual AI that would answer calls for Shorewood Dental. Click the microphone and have a real conversation.
-        </p>
-        <div className="max-w-2xl mx-auto">
-          <div className="min-h-[300px] flex items-center justify-center bg-card rounded-2xl p-8 border border-gold/20">
-            <chat-widget location-id="Rkjt05VeS56IUr5caLBD" style={{"--chat-widget-primary-color": "#B8941F", "--chat-widget-active-color": "#B8941F"} as React.CSSProperties}></chat-widget>
-          </div>
-          <p className="text-text-secondary text-center mt-6 text-sm">
-            Aria is configured with Shorewood Dental&apos;s services, pricing, and Dr. Wei&apos;s practice details.
+          <p className="text-text-secondary text-lg max-w-3xl mx-auto">
+            Click the chat widget in the bottom-right corner to experience our AI Voice Agent live.
           </p>
         </div>
+
+        <div className="max-w-4xl mx-auto bg-surface p-8 rounded-2xl border border-gold/10">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">Try Asking:</h3>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <span className="text-gold mr-3">→</span>
+                  <span>"I need to book a cleaning"</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gold mr-3">→</span>
+                  <span>"What are your hours?"</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gold mr-3">→</span>
+                  <span>"Do you accept my insurance?"</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gold mr-3">→</span>
+                  <span>"I have a dental emergency"</span>
+                </li>
+              </ul>
+            </div>
+            <div className="bg-background p-6 rounded-xl">
+              <h3 className="text-xl font-bold mb-4 text-gold">What You'll Notice:</h3>
+              <ul className="space-y-3 text-sm">
+                <li className="flex items-start">
+                  <span className="mr-3">✓</span>
+                  <span>Instant response time</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-3">✓</span>
+                  <span>Natural conversation flow</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-3">✓</span>
+                  <span>Accurate appointment booking</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-3">✓</span>
+                  <span>Handles multiple intents</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <Script
-        src="https://widgets.leadconnectorhq.com/loader.js"
-        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-        strategy="afterInteractive"
-      />
+
+      {/* GHL Chat Widget */}
+      <chat-widget location-id="Rkjt05VeS56IUr5caLBD"></chat-widget>
     </section>
   )
 }
@@ -502,90 +429,99 @@ function LiveDemo() {
 // SECTION 7: Social Proof
 function SocialProof() {
   return (
-    <section className="section-padding bg-card">
+    <section className="py-20 bg-surface">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <span className="text-gold text-sm font-bold tracking-widest uppercase mb-4 block">
-            TRUSTED BY PRACTICES NATIONWIDE
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Real Results from Real Dental Practices
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            Trusted by <span className="text-gold">Leading Practices</span>
           </h2>
+          <p className="text-text-secondary text-lg">
+            Join hundreds of dental practices that never miss a patient call
+          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {/* Testimonial 1 */}
           <div className="testimonial-card">
-            <div className="flex gap-1 mb-4">
+            <div className="flex items-center mb-4">
               {[...Array(5)].map((_, i) => (
-                <svg key={i} className="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+                <span key={i} className="text-gold text-xl">★</span>
               ))}
             </div>
-            <p className="text-text-secondary mb-6 leading-relaxed">
-              "We went from missing 40-50 calls a month to ZERO. Aria paid for herself in the first week. Our patient acquisition is up 34%."
+            <p className="mb-6 text-text-secondary italic">
+              "We went from missing 60+ calls a month to zero. Our AI receptionist books appointments even when we're closed. Revenue is up 32%."
             </p>
-            <div>
-              <div className="font-bold">Dr. Sarah Kim</div>
-              <div className="text-text-secondary text-sm">Madison Family Dental, WI</div>
+            <div className="flex items-center">
+              <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mr-4 text-xl">
+                👩‍⚕️
+              </div>
+              <div>
+                <div className="font-bold">Dr. Sarah Chen</div>
+                <div className="text-sm text-text-secondary">Bright Smiles Dental</div>
+              </div>
             </div>
           </div>
 
           {/* Testimonial 2 */}
           <div className="testimonial-card">
-            <div className="flex gap-1 mb-4">
+            <div className="flex items-center mb-4">
               {[...Array(5)].map((_, i) => (
-                <svg key={i} className="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+                <span key={i} className="text-gold text-xl">★</span>
               ))}
             </div>
-            <p className="text-text-secondary mb-6 leading-relaxed">
-              "I was skeptical, but patients can&apos;t tell it&apos;s AI. No-shows dropped 60% in the first month. My staff loves not being glued to the phone."
+            <p className="mb-6 text-text-secondary italic">
+              "The ROI was immediate. In month one, we booked 47 appointments that would have been missed. Paid for itself in 3 days."
             </p>
-            <div>
-              <div className="font-bold">Dr. Michael Patel</div>
-              <div className="text-text-secondary text-sm">Bright Smiles Dental, IL</div>
+            <div className="flex items-center">
+              <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mr-4 text-xl">
+                👨‍⚕️
+              </div>
+              <div>
+                <div className="font-bold">Dr. Michael Torres</div>
+                <div className="text-sm text-text-secondary">Family Dental Care</div>
+              </div>
             </div>
           </div>
 
           {/* Testimonial 3 */}
           <div className="testimonial-card">
-            <div className="flex gap-1 mb-4">
+            <div className="flex items-center mb-4">
               {[...Array(5)].map((_, i) => (
-                <svg key={i} className="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+                <span key={i} className="text-gold text-xl">★</span>
               ))}
             </div>
-            <p className="text-text-secondary mb-6 leading-relaxed">
-              "ROI was immediate. We&apos;re capturing after-hours calls we never knew we were losing. Aria booked 23 new patients in her first month."
+            <p className="mb-6 text-text-secondary italic">
+              "Patients love it. They can book at midnight, and the AI sounds so natural they often don't realize it's not human."
             </p>
-            <div>
-              <div className="font-bold">Dr. Jennifer Lopez</div>
-              <div className="text-text-secondary text-sm">Summit Dental Care, MN</div>
+            <div className="flex items-center">
+              <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mr-4 text-xl">
+                👩‍⚕️
+              </div>
+              <div>
+                <div className="font-bold">Dr. Emily Johnson</div>
+                <div className="text-sm text-text-secondary">Advanced Dentistry Group</div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Stats */}
+        {/* Stats Bar */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="text-center">
-            <div className="text-4xl md:text-5xl font-bold text-gold mb-2">47</div>
-            <div className="text-text-secondary">Practices Using Aria</div>
+            <div className="text-4xl font-bold text-gold mb-2">500+</div>
+            <div className="text-text-secondary">Practices Using AI</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl md:text-5xl font-bold text-gold mb-2">99.2%</div>
+            <div className="text-4xl font-bold text-gold mb-2">99.2%</div>
             <div className="text-text-secondary">Call Answer Rate</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl md:text-5xl font-bold text-gold mb-2">62%</div>
-            <div className="text-text-secondary">Reduction in No-Shows</div>
+            <div className="text-4xl font-bold text-gold mb-2">24/7</div>
+            <div className="text-text-secondary">Availability</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl md:text-5xl font-bold text-gold mb-2">1.8s</div>
-            <div className="text-text-secondary">Avg. Call Pickup Time</div>
+            <div className="text-4xl font-bold text-gold mb-2">$2.1M</div>
+            <div className="text-text-secondary">Revenue Recovered</div>
           </div>
         </div>
       </div>
@@ -595,75 +531,67 @@ function SocialProof() {
 
 // SECTION 8: What You Get
 function WhatYouGet() {
+  const features = [
+    {
+      icon: '🤖',
+      title: '24/7 AI Receptionist',
+      description: 'Never miss a call again. Our AI answers instantly, day or night, holidays included.',
+    },
+    {
+      icon: '📅',
+      title: 'Dentrix Integration',
+      description: 'Real-time sync with your practice management software. No double-booking, no manual entry.',
+    },
+    {
+      icon: '💬',
+      title: 'Natural Conversations',
+      description: 'Patients can\'t tell it\'s AI. Handles complex questions, emergencies, and booking logic.',
+    },
+    {
+      icon: '📊',
+      title: 'Analytics Dashboard',
+      description: 'Track every call, conversion rate, and revenue impact. Full transparency into ROI.',
+    },
+    {
+      icon: '🔒',
+      title: 'HIPAA Compliant',
+      description: 'Bank-level encryption. All patient data is secure and meets healthcare regulations.',
+    },
+    {
+      icon: '⚡',
+      title: '48-Hour Setup',
+      description: 'We handle everything. You\'ll be live in 2 days with zero technical work on your end.',
+    },
+  ]
+
   return (
-    <section className="section-padding bg-navy">
+    <section className="py-20">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <span className="text-gold text-sm font-bold tracking-widest uppercase mb-4 block">
-            THE PACKAGE
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Everything You Need, Nothing You Don&apos;t
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            Everything You Need to <span className="text-gold">Never Miss a Call</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-3xl mx-auto">
-            Aria is a complete AI receptionist solution. No hidden fees, no setup charges, no long-term contracts.
+            A complete AI receptionist solution designed specifically for dental practices
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-card rounded-3xl p-8 md:p-12 border border-gold/20">
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <h3 className="text-3xl font-bold mb-2">Aria Complete</h3>
-                <p className="text-text-secondary">Full-service AI receptionist for dental practices</p>
-              </div>
-              <div className="text-right">
-                <div className="text-5xl font-bold text-gold">$497</div>
-                <div className="text-text-secondary">/month</div>
-              </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {features.map((feature, idx) => (
+            <div key={idx} className="feature-card">
+              <div className="feature-icon">{feature.icon}</div>
+              <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+              <p className="text-text-secondary">{feature.description}</p>
             </div>
+          ))}
+        </div>
 
-            <div className="space-y-4 mb-8">
-              {[
-                '24/7/365 call answering (unlimited calls)',
-                'Appointment booking & calendar sync',
-                'Automated SMS/email reminders',
-                'Practice management software integration',
-                'Custom voice & script for your practice',
-                'Real-time call transcripts & analytics',
-                'Voicemail to SMS/email forwarding',
-                'No-show reduction tools',
-                'Waitlist management',
-                '30-day money-back guarantee',
-              ].map((feature, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-gold mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-text-secondary">{feature}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a href="tel:4144444444" className="btn-gold flex-1 text-center text-lg py-4">
-                Book Your Free Demo
-              </a>
-              <a href="#demo" className="btn-outline flex-1 text-center text-lg py-4">
-                Try Aria Live First
-              </a>
-            </div>
-
-            <div className="mt-8 p-6 bg-navy rounded-xl border border-gold/20">
-              <div className="text-center">
-                <div className="text-sm text-text-secondary mb-2">Compare to hiring a receptionist:</div>
-                <div className="text-2xl font-bold text-gold">
-                  Save $59,503/year
-                </div>
-                <div className="text-sm text-text-secondary mt-2">
-                  ($60,000 receptionist salary + benefits vs. $5,964/year for Aria)
-                </div>
-              </div>
+        <div className="mt-16 text-center">
+          <div className="inline-block bg-surface px-8 py-4 rounded-2xl border border-gold/20">
+            <div className="text-sm text-text-secondary mb-2">Starting at</div>
+            <div className="text-5xl font-bold text-gold mb-2">$497<span className="text-2xl">/mo</span></div>
+            <div className="text-sm text-text-secondary">
+              ROI-positive in &lt; 7 days for most practices
             </div>
           </div>
         </div>
@@ -675,48 +603,36 @@ function WhatYouGet() {
 // SECTION 9: CTA Footer
 function CTAFooter() {
   return (
-    <section className="section-padding bg-card">
-      <div className="container-custom text-center">
-        <h2 className="text-3xl md:text-5xl font-bold mb-6">
-          Dr. Wei, Stop Losing Patients Today
-        </h2>
-        <p className="text-text-secondary text-lg max-w-3xl mx-auto mb-8">
-          Every day you wait is another day of missed calls and lost revenue. Let&apos;s get Aria answering your phones this week.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-          <a href="tel:4144444444" className="btn-gold text-lg px-8 py-4">
-            Book Free Demo Call
-          </a>
-          <a href="#demo" className="btn-outline text-lg px-8 py-4">
-            Try Aria Live Now
-          </a>
-        </div>
+    <section className="py-20 bg-surface">
+      <div className="container-custom">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            Ready to Stop Losing <span className="text-gold">$83,600/Year?</span>
+          </h2>
+          <p className="text-lg md:text-xl text-text-secondary mb-10 max-w-2xl mx-auto">
+            Book a free 15-minute demo. We'll show you exactly how many calls you're missing and how much revenue is walking out the door.
+          </p>
 
-        <div className="flex flex-col md:flex-row gap-8 justify-center items-center text-sm text-text-secondary">
-          <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>No setup fees</span>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <a href="tel:4144444444" className="btn-gold text-lg">
+              📞 Call Now: (414) 444-4444
+            </a>
+            <a href="#roi-calculator" className="btn-secondary text-lg">
+              Calculate Your ROI
+            </a>
           </div>
-          <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>No long-term contract</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>30-day money-back guarantee</span>
-          </div>
-        </div>
 
-        <div className="mt-16 pt-8 border-t border-gold/10">
-          <div className="text-text-secondary text-sm">
-            © 2024 RevolutionAI. Built for dental practices that refuse to lose patients.
+          {/* Guarantee Badge */}
+          <div className="inline-block bg-background px-6 py-4 rounded-xl border border-gold/20">
+            <div className="flex items-center gap-3">
+              <div className="text-3xl">🛡️</div>
+              <div className="text-left">
+                <div className="font-bold text-gold">30-Day Money-Back Guarantee</div>
+                <div className="text-sm text-text-secondary">
+                  If you don't see ROI in your first month, we refund 100%. No questions asked.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
